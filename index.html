@@ -38,10 +38,13 @@
             return loseStatement
         }
 
+        function capitalizeWord(word){
+            let result = word.charAt(0).toUpperCase() + word.substring(1, word.length).toLowerCase()
+            return result
+        }
         function game(){
             for (let i = 0; i < 5; i++){
-                let playerSelection = prompt()
-                playerSelection = playerSelection.charAt(0).toUpperCase + playerSelection.substring(0, playerSelection.length)
+                let playerSelection = capitalizeWord(prompt())
                 console.log(playRound(playerSelection, getComputerChoice()))
             }
         }
