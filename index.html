@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+    <button class="btn">Rock</button>
+    <button class="btn">Paper</button>
+    <button class="btn">Scissors</button>
     <script>
         function getComputerChoice(){
             let randomNumber = Math.floor(Math.random() * 3) + 1
@@ -24,18 +27,18 @@
             const loseStatement = "You lose! " + computerSelection + " beats " + playerSelection
             const tieStatement = "Youe tie! " + playerSelection + " ties " + computerSelection
             if (playerSelection === "Rock" && computerSelection === "Scissors"){
-                return winStatement
+                return console.log(winStatement);
             }
             if (playerSelection === "Paper" && computerSelection === "Rock"){
-                return winStatement
+                return console.log(winStatement);
             }
             if (playerSelection === "Scissors" && computerSelection === "Paper"){
-                return winStatement
+                return console.log(winStatement);
             }
             if (playerSelection === computerSelection){
-                return tieStatement
+                return console.log(tieStatement);
             }
-            return loseStatement
+            return console.log(loseStatement);
         }
 
         function capitalizeWord(word){
@@ -43,13 +46,16 @@
             return result
         }
         function game(){
-            for (let i = 0; i < 5; i++){
-                let playerSelection = capitalizeWord(prompt())
-                console.log(playRound(playerSelection, getComputerChoice()))
-            }
+            let playerSelection = capitalizeWord(prompt())
+            console.log(playRound(playerSelection, getComputerChoice()))
         }
 
-        game()
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => btn.addEventListener('click', function () {
+            playRound(btn.textContent, getComputerChoice());
+        
+        }));
+
     </script>
 </body>
 </html>
