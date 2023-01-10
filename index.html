@@ -11,6 +11,7 @@
     <button class="btn">Paper</button>
     <button class="btn">Scissors</button>
     <div class="game-result"></div>
+    <div class="score"></div>
     <script>
         function getComputerChoice(){
             let randomNumber = Math.floor(Math.random() * 3) + 1
@@ -28,35 +29,54 @@
             const loseStatement = "You lose! " + computerSelection + " beats " + playerSelection
             const tieStatement = "Youe tie! " + playerSelection + " ties " + computerSelection
             if (playerSelection === "Rock" && computerSelection === "Scissors"){
-                return gameResult.innerText(winStatement);
+                userScore++;
+                return gameResult.innerText = winStatement;
             }
             if (playerSelection === "Paper" && computerSelection === "Rock"){
+                userScore++;
                 return gameResult.innerText = winStatement;
             }
             if (playerSelection === "Scissors" && computerSelection === "Paper"){
+                userScore++;
                 return gameResult.innerText = winStatement;
             }
             if (playerSelection === computerSelection){
                 return gameResult.innerText = tieStatement;
             }
+            computerScore++;
             return gameResult.innerText = loseStatement ;
         }
 
-        function capitalizeWord(word){
+        function capitalizeWord(word) {
             let result = word.charAt(0).toUpperCase() + word.substring(1, word.length).toLowerCase()
             return result
         }
-        function game(){
+
+        function game() {
             let playerSelection = capitalizeWord(prompt())
             console.log(playRound(playerSelection, getComputerChoice()))
+        }
+
+        function getScoreStatement() {
+            let scoreStatement = "You: " + userScore + " Computer: " + computerScore;
+            return scoreStatement;
+        }
+
+        function updateScore() {
+            score.innerText = getScoreStatement();
         }
 
         const buttons = document.querySelectorAll('.btn');
         buttons.forEach(btn => btn.addEventListener('click', function () {
             playRound(btn.textContent, getComputerChoice());
+            updateScore();
         
         }));
+        const score = document.querySelector(".score");
         const gameResult = document.querySelector('.game-result');
+        let userScore = 0;
+        let computerScore = 0;
+        
 
     </script>
 </body>
