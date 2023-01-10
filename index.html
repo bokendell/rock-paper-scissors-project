@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="winner-message"></div>
     <button class="btn">Rock</button>
     <button class="btn">Paper</button>
     <button class="btn">Scissors</button>
@@ -58,6 +59,12 @@
         }
 
         function getScoreStatement() {
+            if (userScore === 5){
+                winnerMessage.textContent = "You Win!!";
+            }
+            if (computerScore === 5){
+                winnerMessage.textContent = "You Lose!!";
+            }
             let scoreStatement = "You: " + userScore + " Computer: " + computerScore;
             return scoreStatement;
         }
@@ -74,6 +81,7 @@
         }));
         const score = document.querySelector(".score");
         const gameResult = document.querySelector('.game-result');
+        const winnerMessage = document.querySelector('.winner-message');
         let userScore = 0;
         let computerScore = 0;
         
